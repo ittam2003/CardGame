@@ -1,1 +1,3 @@
 # CardGame
+
+Simple card game

@@ -1,0 +1,9 @@
+.label{
+    -fx-font-size: 26px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Agency FB" ;
+}
+
+.button:hover{
+    -fx-background-color: #D6D6D6;
+}
