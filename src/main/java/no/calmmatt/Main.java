@@ -1,9 +1,9 @@
 package no.calmmatt;
 
-import no.calmmatt.ui.GameMenu;
+import no.calmmatt.ui.CardGameApp;
 
 public class Main {
     public static void main(String[] args) {
-        GameMenu.appMain(args);
+        CardGameApp.appMain(args);
     }
 }

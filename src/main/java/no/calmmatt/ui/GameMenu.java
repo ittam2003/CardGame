@@ -35,7 +35,7 @@ import java.util.Objects;
  * @author Matti Kjellstadli
  * @version 2023-03-21
  */
-public class GameMenu extends Application {
+public class GameMenu {
     private Text cardText;
     private Label allHeartsLabel;
     private Label valueLabel;
@@ -49,14 +49,13 @@ public class GameMenu extends Application {
     /**
      * The start method sets up the UI components and handles the "Deal hand"
      * button action by calling the appropriate controller methods to update the UI.
-     * @param stage the main stage of the application
      * @throws Exception if there is an error setting up the UI components
      *
      */
-    @Override
-    public void start(Stage stage) {
+
+    public void start(Scene scene) {
         this.controller = new GameMenuController();
-        BorderPane root = new BorderPane();
+        BorderPane root = (BorderPane) scene.getRoot();
         root.setStyle("-fx-background-color: linear-gradient(#101010, #171717); -fx-border-width: 10");
         root.setPadding(new Insets(50));
 
@@ -118,7 +117,6 @@ public class GameMenu extends Application {
             images[i].setFitHeight(300);
             images[i].setEffect(dropShadow);
         }
-
         this.cardPic.getChildren().addAll(images);
         this.cardPic.setStyle("-fx-background-color: linear-gradient(#626262, #777777); -fx-background-radius: 40px");
 
@@ -126,8 +124,6 @@ public class GameMenu extends Application {
 
         cardPane.getChildren().add(cardText);
         root.setCenter(cardPic);
-
-
 
         BorderPane titlePane = new BorderPane();
         //ImageView title = new ImageView("/other/title.png");
@@ -187,14 +183,6 @@ public class GameMenu extends Application {
             cardGameApp.stop();
         });
 
-        Scene mainScene = new Scene(root, 1300,800);
-        mainScene.getStylesheets().add(this.getClass().getResource("/main.css").toExternalForm());
-        stage.setMinWidth(1300);
-        stage.setMinHeight(700);
-        stage.setResizable(true);
-        stage.setScene(mainScene);
-        stage.setTitle("CardGame");
-        stage.show();
     }
 
     /**
@@ -224,8 +212,6 @@ public class GameMenu extends Application {
         for (String cardImage : cardImages) {
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/cards/" + cardImage)));
             ImageView imageView = new ImageView(image);
-            //imageView.setFitHeight(150);
-            //imageView.setFitWidth(100);
             imageView.setFitHeight(300);
             imageView.setFitWidth(200);
             imageView.setEffect(dropShadow);
@@ -279,14 +265,5 @@ public class GameMenu extends Application {
         } else {
             this.flush.setText("No");
         }
-    }
-
-    /**
-     * Responsible for launching the game.
-     *
-     * @param args Launch args.
-     */
-    public static void appMain(String[] args) {
-        launch(args);
     }
 }
