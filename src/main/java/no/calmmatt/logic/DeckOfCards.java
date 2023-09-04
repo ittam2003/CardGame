@@ -1,4 +1,4 @@
-package no.ntnu.idatx2001.oblig3.cardgame;
+package no.calmmatt.logic;
 
 import java.util.ArrayList;
 import java.util.Random;

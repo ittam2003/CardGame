@@ -1,4 +1,4 @@
-package no.ntnu.idatx2001.oblig3.cardgame;
+package no.calmmatt.ui;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -16,6 +16,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import no.calmmatt.logic.Hand;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +35,7 @@ import java.util.Objects;
  * @author Matti Kjellstadli
  * @version 2023-03-21
  */
-public class Main extends Application {
+public class GameMenu extends Application {
     private Text cardText;
     private Label allHeartsLabel;
     private Label valueLabel;
@@ -42,8 +44,7 @@ public class Main extends Application {
 
     private FlowPane cardPic;
 
-    private MainController controller;
-    private BorderPane root;
+    private GameMenuController controller;
 
     /**
      * The start method sets up the UI components and handles the "Deal hand"
@@ -53,10 +54,10 @@ public class Main extends Application {
      *
      */
     @Override
-    public void start(Stage stage) throws Exception {
-        this.controller = new MainController();
+    public void start(Stage stage) {
+        this.controller = new GameMenuController();
         BorderPane root = new BorderPane();
-        root.setStyle("-fx-background-color: linear-gradient(#597fff, #6e90ff); -fx-border-color: #2460a4; -fx-border-color: #2460a4; -fx-border-width: 10");
+        root.setStyle("-fx-background-color: linear-gradient(#101010, #171717); -fx-border-width: 10");
         root.setPadding(new Insets(50));
 
         Button dealButton = new Button("DEAL\nHAND");
@@ -119,7 +120,7 @@ public class Main extends Application {
         }
 
         this.cardPic.getChildren().addAll(images);
-        this.cardPic.setStyle("-fx-background-color: linear-gradient(#20fe8c, #00ff7a); -fx-background-radius: 40px");
+        this.cardPic.setStyle("-fx-background-color: linear-gradient(#626262, #777777); -fx-background-radius: 40px");
 
 
 
@@ -129,9 +130,11 @@ public class Main extends Application {
 
 
         BorderPane titlePane = new BorderPane();
-        ImageView title = new ImageView("/other/title.png");
-        title.setFitHeight(45);
-        title.setFitWidth(200);
+        //ImageView title = new ImageView("/other/title.png");
+        //title.setFitHeight(45);
+        //title.setFitWidth(200);
+        Label title = new Label("Card Dealer");
+        title.setStyle("-fx-text-fill: white; -fx-font-size: 50; -fx-font-weight: BOLD");
         titlePane.setCenter(title);
         root.setTop(titlePane);
 
@@ -161,7 +164,7 @@ public class Main extends Application {
         HBox.setHgrow(info1, Priority.ALWAYS);
         HBox.setHgrow(dealButton, Priority.ALWAYS);
 
-        info2.setStyle("-fx-background-color: #93acff; -fx-background-radius: 20px; -fx-border-width: 5");
+        info2.setStyle("-fx-background-color: #282828; -fx-background-radius: 20px; -fx-border-width: 5");
         info2.setSpacing(5);
         info2.setPadding(new Insets(10));
         root.setBottom(info2);
@@ -180,7 +183,8 @@ public class Main extends Application {
         );
 
         exitButton.setOnAction(event -> {
-            Platform.exit();
+            CardGameApp cardGameApp = new CardGameApp();
+            cardGameApp.stop();
         });
 
         Scene mainScene = new Scene(root, 1300,800);
@@ -278,10 +282,11 @@ public class Main extends Application {
     }
 
     /**
-     * Launches the JavaFX application.
-     * @param args the command-line arguments passed to the application.
+     * Responsible for launching the game.
+     *
+     * @param args Launch args.
      */
-    public static void main(String[] args) {
+    public static void appMain(String[] args) {
         launch(args);
     }
 }

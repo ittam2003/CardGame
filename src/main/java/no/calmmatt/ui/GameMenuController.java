@@ -1,4 +1,7 @@
-package no.ntnu.idatx2001.oblig3.cardgame;
+package no.calmmatt.ui;
+
+import no.calmmatt.logic.Hand;
+import no.calmmatt.logic.PlayingCard;
 
 /**
  * The MainController class represents the controller for the card game application. It contains methods for dealing a new
@@ -8,7 +11,7 @@ package no.ntnu.idatx2001.oblig3.cardgame;
  * @author Matti Kjellstadli
  * @version 2023-03-21
  */
-public class MainController {
+public class GameMenuController {
     Hand hand = new Hand();
 
     /**
@@ -26,7 +29,7 @@ public class MainController {
     public String getAllHeartsInHand() {
         StringBuilder allHearts = new StringBuilder();
         for (PlayingCard playingCard : hand.getHand()) {
-            if (playingCard.getSuit() == 'H') {
+            if (playingCard.suit() == 'H') {
                 allHearts.append(playingCard.getAsString()).append(" ");
             }
         }
@@ -57,7 +60,7 @@ public class MainController {
     public String getSumOfCardsAsString() {
         int sumOfHand = 0;
         for (PlayingCard playingCard : hand.getHand()) {
-            sumOfHand += playingCard.getFace();
+            sumOfHand += playingCard.face();
         }
         return Integer.toString(sumOfHand);
     }
@@ -68,10 +71,10 @@ public class MainController {
      * @return true if the player's hand contains a flush, false otherwise.
      */
     public boolean checkIfFlush() {
-        return hand.getHand().get(0).getSuit() == hand.getHand().get(1).getSuit() &&
-                hand.getHand().get(0).getSuit() == hand.getHand().get(2).getSuit() &&
-                hand.getHand().get(0).getSuit() == hand.getHand().get(3).getSuit() &&
-                hand.getHand().get(0).getSuit() == hand.getHand().get(4).getSuit();
+        return hand.getHand().get(0).suit() == hand.getHand().get(1).suit() &&
+                hand.getHand().get(0).suit() == hand.getHand().get(2).suit() &&
+                hand.getHand().get(0).suit() == hand.getHand().get(3).suit() &&
+                hand.getHand().get(0).suit() == hand.getHand().get(4).suit();
     }
 }
 

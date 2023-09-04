@@ -1,3 +1,3 @@
-# CardGame
+# Card Dealer
 
-Simple card game
+Simple pointless card dealer.
